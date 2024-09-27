@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dork Generator</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .dork-links {
+            margin-top: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .btn-custom:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="text-center mb-4">Google Dork Generator</h2>
+                        <form id="dorkForm">
+                            <div class="mb-3">
+                                <label for="domain" class="form-label">Enter your domain:</label>
+                                <input type="text" class="form-control" id="domain" placeholder="example.com" required>
+                            </div>
+                            <div class="d-grid">
+                                <button type="button" class="btn btn-custom" onclick="generateDorks()">Generate Dorks</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="card mt-4 shadow-sm">
+                    <div class="card-body">
+                        <h4>Generated Dorks:</h4>
+                        <div id="dorkLinks" class="dork-links"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        function generateDorks() {
+            const domain = document.getElementById('domain').value;
+            const dorks = [
+                `site:${domain} inurl:admin`,
+                `site:${domain} intitle:"index of"`,
+                `site:${domain} ext:php`,
+                `site:${domain} ext:html`,
+                `site:${domain} ext:asp`,
+                `site:${domain} "login"`,
+                `site:${domain} "password"`,
+                `site:${domain} "signup"`,
+                `site:${domain} intext:"sql"`,
+                `site:${domain} intext:"database"`,
+                `site:${domain} "confidential"`,
+                `site:${domain} "private"`
+            ];
+
+            let dorkLinksHtml = '';
+            dorks.forEach(dork => {
+                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(dork)}`;
+                dorkLinksHtml += `<a href="${googleUrl}" target="_blank" class="d-block mb-2">${dork}</a>`;
+            });
+
+            document.getElementById('dorkLinks').innerHTML = dorkLinksHtml;
+        }
+    </script>
+
+</body>
+
+</html>
