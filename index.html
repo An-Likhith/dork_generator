@@ -40,6 +40,11 @@
             background-color: #0056b3;
             color: white;
         }
+
+        .dork-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
     </style>
 </head>
 
@@ -79,25 +84,63 @@
     <script>
         function generateDorks() {
             const domain = document.getElementById('domain').value;
+
             const dorks = [
-                `site:${domain} inurl:admin`,
-                `site:${domain} intitle:"index of"`,
-                `site:${domain} ext:php`,
-                `site:${domain} ext:html`,
-                `site:${domain} ext:asp`,
-                `site:${domain} "login"`,
-                `site:${domain} "password"`,
-                `site:${domain} "signup"`,
-                `site:${domain} intext:"sql"`,
-                `site:${domain} intext:"database"`,
-                `site:${domain} "confidential"`,
-                `site:${domain} "private"`
+                {
+                    query: `site:${domain} inurl:admin`,
+                    description: "Searches for admin panel or admin login pages."
+                },
+                {
+                    query: `site:${domain} intitle:"index of"`,
+                    description: "Finds open directories on the website."
+                },
+                {
+                    query: `site:${domain} ext:php`,
+                    description: "Searches for PHP files on the domain."
+                },
+                {
+                    query: `site:${domain} ext:html`,
+                    description: "Searches for HTML files on the domain."
+                },
+                {
+                    query: `site:${domain} ext:asp`,
+                    description: "Searches for ASP files on the domain."
+                },
+                {
+                    query: `site:${domain} "login"`,
+                    description: "Finds login pages."
+                },
+                {
+                    query: `site:${domain} "password"`,
+                    description: "Searches for pages that contain the word 'password'."
+                },
+                {
+                    query: `site:${domain} "signup"`,
+                    description: "Finds signup or registration pages."
+                },
+                {
+                    query: `site:${domain} intext:"sql"`,
+                    description: "Searches for pages that mention SQL, possibly exposing database information."
+                },
+                {
+                    query: `site:${domain} intext:"database"`,
+                    description: "Searches for pages with database-related information."
+                },
+                {
+                    query: `site:${domain} "confidential"`,
+                    description: "Searches for pages marked as confidential."
+                },
+                {
+                    query: `site:${domain} "private"`,
+                    description: "Searches for private content on the domain."
+                }
             ];
 
             let dorkLinksHtml = '';
             dorks.forEach(dork => {
-                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(dork)}`;
-                dorkLinksHtml += `<a href="${googleUrl}" target="_blank" class="d-block mb-2">${dork}</a>`;
+                const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(dork.query)}`;
+                dorkLinksHtml += `<a href="${googleUrl}" target="_blank" class="d-block mb-2">${dork.query}</a>
+                                  <p class="dork-description">${dork.description}</p>`;
             });
 
             document.getElementById('dorkLinks').innerHTML = dorkLinksHtml;
