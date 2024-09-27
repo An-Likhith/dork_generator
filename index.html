@@ -133,7 +133,64 @@
                 {
                     query: `site:${domain} "private"`,
                     description: "Searches for private content on the domain."
-                }
+                },
+                {
+                    query: `site:${domain} ext:doc | ext:docx | ext:odt | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv`,
+                    description: "Find Publicly Exposed Docs"
+                },
+                {
+                    query: `site:${domain}  ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:ini | ext:env`,
+                    description:"Configuration files Exposed"
+                },
+                {
+                    query:`site:${domain}  <files here>,`
+                    description:"<description about it>"
+                },
+                {
+                     query: `site:${domain} ext:sql | ext:dbf | ext:mdb`,
+                     description: "Searches database files."
+                },
+                {
+                    query: `site:example.com ext:log`,
+                    description: "Searches log files."
+                 },
+                {
+                    query: `site:example.com ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup`,
+                    description: "Searches backup files."
+                },
+                {
+                    query: `site:example.com inurl:login | inurl:signin | intitle:Login | intitle:"sign in" | inurl:auth`,
+                    description: "Searches login pages."
+                },
+                {
+                    query: `site:example.com intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"`,
+                    description: "Searches SQL errors."
+                },
+                {
+                    query: `site:example.com "PHP Parse error" | "PHP Warning" | "PHP Error"`,
+                    description: "Searches PHP errors."
+                },
+                {
+                    query: `site:example.com ext:php intitle:phpinfo "published by the PHP Group"`,
+                    description: "Searches PHP info pages."
+                },
+                {
+                    query: `site:example.com inurl:signup | inurl:register | intitle:Signup`,
+                    description: "Searches signup pages."
+                },
+                {
+                    query: `site:pastebin.com | site:paste2.org | site:pastehtml.com | site:slexy.org | site:snipplr.com | site:snipt.net | site:textsnip.com | site:bitpaste.app | site:justpaste.it | site:heypasteit.com | site:hastebin.com | site:dpaste.org | site:dpaste.com | site:codepad.org | site:jsitor.com | site:codepen.io | site:jsfiddle.net | site:dotnetfiddle.net | site:phpfiddle.org | site:ide.geeksforgeeks.org | site:repl.it | site:ideone.com | site:paste.debian.net | site:paste.org | site:paste.org.ru | site:codebeautify.org  | site:codeshare.io | site:trello.com "${domain}"`,
+                    description: "Search pastebins and Pasting sites"   
+                },
+                {
+                    query:`site:github.com | site:gitlab.com "${domain}"`,
+                    description: "Searches github and gitlab pages"
+                },
+                {
+                    query: `site:stackoverflow.com "${domain}"`,
+                    description: "Searches Stackoverflow pages"
+                }  
+
             ];
 
             let dorkLinksHtml = '';
